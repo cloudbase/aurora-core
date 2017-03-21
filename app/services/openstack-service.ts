@@ -38,7 +38,8 @@ export class OpenstackService {
       OpenstackService.LOGGER.debug(`Emitting update event for - ${JSON.stringify(item)}`);
       let endpoints = {};
       item['endpoints'].forEach(endpoint => {
-        if (keystoneAPIVersion === '3') {
+        /**
+         if (keystoneAPIVersion === '3') {
           // Parse the endpoints to get a similar output to V2 API - one object per each region
           if (endpoints[item['endpoints']]) {
             
@@ -46,6 +47,7 @@ export class OpenstackService {
           endpoints[item['endpoints'].region_id]
           
         }
+         */
         // For V2 API Cinder has a separate entry in the Service Catalog with the name "cinderv2"
         item['name'] = item['name'] === 'cinderv2' ? 'cinder' : item['name'];
         EventEmitter.emitUpdateEvent(

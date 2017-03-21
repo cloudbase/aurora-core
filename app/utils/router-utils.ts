@@ -41,7 +41,7 @@ export class RouterUtils {
   static getInfoFromServices(req, res, next) {
     if (req.method === 'POST') {
       if ((SubscriberClient.registeredMessages.hasOwnProperty(req.originalUrl)) && (SubscriberClient.registeredMessages[req.originalUrl].length > 0)) {
-        SubscriberClient.requestBody = req.body;
+        SubscriberClient['requestBody'] = req.body;
         Promise.all(SubscriberClient.registeredMessages[req.originalUrl].map(SubscriberClient.notifyPublisher, SubscriberClient))
           .then(results => {
             return Promise.resolve(results.forEach(result => {

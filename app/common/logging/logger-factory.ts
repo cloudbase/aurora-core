@@ -5,14 +5,25 @@ import { LoggerInstance } from 'winston';
 export class LoggerFactory {
     private static logger: LoggerInstance;
 
-    private static customColors = {
-        trace: 'white',
-        debug: 'grey',
-        info: 'green',
-        warn: 'yellow',
-        crit: 'red',
-        fatal: 'red'
+    private static customLevels = {
+        levels: {
+            trace: 5,
+            debug: 4,
+            info: 3,
+            warn: 2,
+            crit: 1,
+            error: 0 
+        },
+        colors: {
+            trace: 'white',
+            debug: 'cyan',
+            info: 'green',
+            warn: 'yellow',
+            crit: 'red',
+            error: 'red' 
+        }
     };
+
     private constructor() {}
 
     static getLogger(): LoggerInstance {
@@ -29,7 +40,8 @@ export class LoggerFactory {
         if (!LoggerFactory.logger) {
             const logLevel = process.env.LOG_LEVEL;
             LoggerFactory.logger = new winston.Logger({
-                colors: LoggerFactory.customColors,
+                levels: LoggerFactory.customLevels.levels,
+                colors: LoggerFactory.customLevels.colors,
                 transports: [
                     new (winston.transports.Console)({
                         level: logLevel,
@@ -53,7 +65,7 @@ export class LoggerFactory {
 
 
         LoggerFactory.logger.stream = loggerOptions;
-        winston.addColors(LoggerFactory.customColors);
+        //winston.addColors(LoggerFactory.customColors);
         return LoggerFactory.logger;
     }
 }

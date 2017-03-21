@@ -1,6 +1,6 @@
 import { OpenstackService } from './openstack-service';
 import { OpenstackAPIModel } from './openstack-api-model';
-import { EventEmitter, RabbitClient, NotImplementedError, InternalError } from '../common';
+import { EventEmitter, RabbitClient, NotImplementedError, InternalError, Credentials } from '../common';
 import { AuthenticationUtils } from '../utils';
 import { Topology } from '../config';
 
@@ -40,7 +40,7 @@ export class IdentityService extends OpenstackAPIModel {
    * 
    * @memberOf IdentityService
    */
-  authenticate(credentials: {}): Promise<any> {
+  authenticate(credentials: Credentials): Promise<any> {
     let result = {};
     let parsedCredentials = {};
     return AuthenticationUtils.parseCredentials(credentials, this.apiVersion)
@@ -86,10 +86,11 @@ export class IdentityService extends OpenstackAPIModel {
    * @returns {Promise<any>} 
    * 
    * @memberOf IdentityService
+   *
    */
-  //destroySession(token: string): Promise<any> {
-  //  
-  //}
+    destroyToken(token: string): Promise<any> {
+      return Promise.resolve('Token destroyed');
+    } 
 
   /**
    * 
@@ -118,7 +119,7 @@ export class IdentityService extends OpenstackAPIModel {
    * 
    * @memberOf IdentityService
    */
-  getServiceCatalog(authObj?: {}): Promise<any> {
+  getServiceCatalog(authObj?: Credentials): Promise<any> {
     if (authObj) {
       if (this.apiVersion === '2.0') {
         return AuthenticationUtils.parseCredentials(authObj, this.apiVersion)

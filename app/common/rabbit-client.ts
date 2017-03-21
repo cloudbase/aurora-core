@@ -1,4 +1,4 @@
-import rabbit = require('rabbot');
+const rabbit: any = require('rabbot');
 import { Topology } from '../config';
 import { Logger, LoggerFactory, InternalError } from './';
 
@@ -58,7 +58,7 @@ export class RabbitClient {
       type: message.type,
       expiresAfter: 1000,
       routingKey: message.routingKey || '',
-      body: this.requestBody || {}
+      body: this['requestBody'] || {}
     };
 
     return this.rabbitConnection.request(this.exchangeName, messageParameter)

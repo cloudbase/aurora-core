@@ -31,7 +31,7 @@ ServiceUtils.registerService()
     });
   })
   .catch(error => {
-    LOGGER.error(`Unable to register service - ${JSON.stringify(error)}`);  
+    LOGGER.warn('Unable to register service. Proceeding with standalone service');  
     const apiRouter: Router = ApiRouterFactory.getApiRouter('CORE_NOTIFICATIONS');
     const app: Express = ExpressAppFactory.getExpressApp(apiRouter, null, errorMiddleware);
     app.listen(parseInt(process.env.PORT), () => {

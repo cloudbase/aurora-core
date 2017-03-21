@@ -44,7 +44,7 @@ export class IdentityController extends RestController {
   logout(req, res, next): Promise<any> {
     IdentityController.LOGGER.debug(`Log out for use - ${req.session.username}`);
 
-    return this.identityService.destroySession(req.session)
+    return this.identityService.destroyToken(req.session)
       .then((result) => {
         return this.respond(res, result);
       });
