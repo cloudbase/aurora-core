@@ -17,6 +17,7 @@ export class AppConfig {
   keystoneAPIVersion: string;
   name: string;
   gatewayRoutingPath: string;
+  serviceApiPath: string;
   // optional environment variables
   redisPort: number;
   redisHost: string;
@@ -40,6 +41,7 @@ export class AppConfig {
     this.serviceManagerPort = this.getIntegerEnvVar('SERVICE_MANAGER_PORT');
     this.name = this.getStringEnvVar('SERVICE_NAME');
     this.gatewayRoutingPath = this.getStringEnvVar('GATEWAY_ROUTING_PATH');
+    this.serviceApiPath = this.getStringEnvVar('SERVICE_API_PATH');
     // optional environment variables
     this.redisPort = this.getIntegerEnvVar('REDIS_PORT', 6379);
     this.redisHost = this.getStringEnvVar('REDIS_PORT', '127.0.0.1');

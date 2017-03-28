@@ -21,7 +21,7 @@ export class ServiceUtils {
       name: APP_CONFIG.name,
       port: APP_CONFIG.port,
       routingPath: APP_CONFIG.gatewayRoutingPath,
-      options: { 'AUTHENTICATION': '/api/identity/tokens' }
+      options: { apiPath: APP_CONFIG.serviceApiPath, 'AUTHENTICATION': '/api/identity/tokens' }
     };
     
     ServiceUtils.LOGGER.info(`Registering new service with ${JSON.stringify(serviceOptions)}`);
