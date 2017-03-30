@@ -30,7 +30,7 @@ export class RouterUtils {
 
   /**
    * Checks if the requested OpenStack service needs to fetch information from another service and composes the new request body
-   * 
+   * Todo - Breaks post requests
    * @static
    * @param {any} req 
    * @param {any} res 

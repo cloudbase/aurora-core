@@ -82,7 +82,8 @@ export class ApiRouterFactory {
 
     ApiRouterFactory.LOGGER.info('Mounting routes');
     apiRouter.use('/identity', identityRouter);
-    apiRouter.use('/nova', RouterUtils.getInfoFromServices, novaRouter);
+    //apiRouter.use('/nova', RouterUtils.getInfoFromServices, novaRouter);
+    apiRouter.use('/nova', novaRouter);
     apiRouter.use('/cinder', cinderRouter);
     apiRouter.use('/neutron', neutronRouter);
     apiRouter.use('/glance', glanceRouter);
